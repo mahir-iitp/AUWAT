@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AUWAT Store</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>🛒 AUWAT Store</h1>
+        <div>
+            <a href="admin.html" style="color: white; text-decoration: none; margin-right: 1rem;">📊 Admin</a>
+            <div class="cart-icon" onclick="showCart()">
+                Cart (<span id="cart-count">0</span>)
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="categories">
+            <button onclick="showCategory('fruits')">🍎 Fruits</button>
+            <button onclick="showCategory('grains')">🌾 Grains</button>
+            <button onclick="showCategory('dairy')">🥛 Dairy</button>
+            <button onclick="showCategory('vegetables')">🥕 Vegetables</button>
+        </div>
+
+        <div id="products" class="products-grid"></div>
+        
+        <div id="cart" class="cart hidden">
+            <h2>Shopping Cart</h2>
+            <div id="cart-items"></div>
+            <div class="cart-total">
+                <strong>Total: ₹<span id="total">0</span></strong>
+            </div>
+            <button onclick="checkout()" class="checkout-btn">Checkout (COD)</button>
+            <button onclick="hideCart()" class="close-btn">Close</button>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

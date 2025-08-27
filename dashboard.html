@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <div class="dashboard">
+        <div class="sidebar">
+            <h2>🏪 Admin Panel</h2>
+            <ul>
+                <li><a href="#" onclick="showSection('orders')" class="active">📋 Orders</a></li>
+                <li><a href="#" onclick="showSection('products')">📦 Products</a></li>
+                <li><a href="#" onclick="showSection('add-product')">➕ Add Product</a></li>
+                <li><a href="delivery.html" target="_blank">🚚 Delivery</a></li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <div class="header">
+                <h1 id="page-title">Orders Management</h1>
+                <div>
+                    <button class="btn btn-primary" onclick="window.open('index.html', '_blank')">🛒 View Store</button>
+                    <button class="logout-btn" onclick="logout()">Logout</button>
+                </div>
+            </div>
+
+            <!-- Orders Section -->
+            <div id="orders-section" class="section">
+                <div class="card">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                        <h3>All Orders</h3>
+                        <button class="btn btn-success" onclick="downloadOrders()">📥 Download CSV</button>
+                    </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Customer</th>
+                                <th>Phone</th>
+                                <th>Address</th>
+                                <th>Items</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="orders-table">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Products Section -->
+            <div id="products-section" class="section hidden">
+                <div class="card">
+                    <h3>Manage Products</h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="products-table">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Add Product Section -->
+            <div id="add-product-section" class="section hidden">
+                <div class="card">
+                    <h3 id="form-title">Add New Product</h3>
+                    <form id="product-form">
+                        <input type="hidden" id="product-id">
+                        <div class="form-group">
+                            <label>Product Name</label>
+                            <input type="text" id="product-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Category</label>
+                            <select id="product-category" required>
+                                <option value="fruits">Fruits</option>
+                                <option value="vegetables">Vegetables</option>
+                                <option value="grains">Grains</option>
+                                <option value="dairy">Dairy</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Price (₹/kg)</label>
+                            <input type="number" id="product-price" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Stock (kg)</label>
+                            <input type="number" id="product-stock" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Image URL</label>
+                            <input type="url" id="product-image" placeholder="https://example.com/image.jpg">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save Product</button>
+                        <button type="button" class="btn btn-warning" onclick="resetForm()">Reset</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>

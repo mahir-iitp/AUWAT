@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Grocery Store</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>🛒 Checkout</h1>
+    </header>
+
+    <main style="max-width: 600px; margin: 2rem auto; padding: 1rem;">
+        <form id="checkout-form" style="background: white; padding: 2rem; border-radius: 8px;">
+            <h2>Delivery Details</h2>
+            
+            <div style="margin-bottom: 1rem;">
+                <label>Name:</label>
+                <input type="text" name="name" required style="width: 100%; padding: 0.5rem; margin-top: 0.25rem;">
+            </div>
+            
+            <div style="margin-bottom: 1rem;">
+                <label>Phone:</label>
+                <input type="tel" name="phone" required style="width: 100%; padding: 0.5rem; margin-top: 0.25rem;">
+            </div>
+            
+            <div style="margin-bottom: 1rem;">
+                <label>Address:</label>
+                <textarea name="address" required style="width: 100%; padding: 0.5rem; margin-top: 0.25rem; height: 80px;"></textarea>
+            </div>
+            
+            <div style="margin-bottom: 1rem;">
+                <label>
+                    <input type="checkbox" name="save_details"> Save details for next time
+                </label>
+            </div>
+            
+            <div style="background: #f8f9fa; padding: 1rem; border-radius: 5px; margin-bottom: 1rem;">
+                <h3>Payment Method</h3>
+                <p>💰 Cash on Delivery (COD) Only</p>
+            </div>
+            
+            <button type="submit" class="checkout-btn">Place Order</button>
+            <a href="index.html" style="display: block; text-align: center; margin-top: 1rem;">← Back to Shopping</a>
+        </form>
+    </main>
+
+    <script>
+        document.getElementById('checkout-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const orderId = 'ORD' + Date.now();
+            const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            // Save order for admin
+            const orders = JSON.parse(localStorage.getItem('orders') || '[]');
+            orders.push({
+                id: orderId,
+                customer: {
+                    name: formData.get('name'),
+                    phone: formData.get('phone'),
+                    address: formData.get('address')
+                },
+                items: cart,
+                total: total,
+                status: 'Pending',
+                date: new Date().toLocaleDateString()
+            });
+            localStorage.setItem('orders', JSON.stringify(orders));
+            
+            // Save details if checkbox is checked
+            if (formData.get('save_details')) {
+                localStorage.setItem('customer_name', formData.get('name'));
+                localStorage.setItem('customer_phone', formData.get('phone'));
+                localStorage.setItem('customer_address', formData.get('address'));
+            }
+            
+            // Clear cart
+            localStorage.removeItem('cart');
+            
+            alert(`Order Placed Successfully!\n\nOrder ID: ${orderId}\nPayment: Cash on Delivery\n\nThank you for your order!`);
+            window.location.href = 'index.html';
+        });
+        
+        // Load saved details
+        if (localStorage.getItem('customer_name')) {
+            document.querySelector('[name="name"]').value = localStorage.getItem('customer_name');
+            document.querySelector('[name="phone"]').value = localStorage.getItem('customer_phone');
+            document.querySelector('[name="address"]').value = localStorage.getItem('customer_address');
+        }
+    </script>
+</body>
+</html>

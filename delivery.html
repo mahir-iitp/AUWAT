@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delivery Dashboard</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <div class="dashboard">
+        <div class="sidebar">
+            <h2>🚚 Delivery Panel</h2>
+            <ul>
+                <li><a href="#" onclick="showDeliveryOrders()" class="active">📦 My Orders</a></li>
+                <li><a href="#" onclick="showProfile()">👤 Profile</a></li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <div class="header">
+                <h1>Delivery Dashboard</h1>
+                <div>
+                    <span style="color: #27ae60;">🟢 Online</span>
+                    <button class="logout-btn" onclick="window.location.href='index.html'">Back to Store</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>📱 Delivery Instructions</h3>
+                <p><strong>Current System:</strong> Notifications sent via WhatsApp/SMS when orders are ready</p>
+                <div style="background: #f8f9fa; padding: 1rem; border-radius: 5px; margin: 1rem 0;">
+                    <h4>📞 Contact Info</h4>
+                    <p><strong>Delivery Boy:</strong> Raj Kumar</p>
+                    <p><strong>Phone:</strong> +91-9241968757</p>
+                    <p><strong>WhatsApp:</strong> +91-9241968757</p>
+                </div>
+                
+                <div style="background: #e8f5e8; padding: 1rem; border-radius: 5px;">
+                    <h4>🔔 Notification Types</h4>
+                    <ul>
+                        <li><strong>Order Packed:</strong> New delivery assignment with customer details</li>
+                        <li><strong>Order Delivered:</strong> Confirmation request</li>
+                    </ul>
+                </div>
+
+                <div style="margin-top: 2rem; padding: 1rem; background: #fff3cd; border-radius: 5px;">
+                    <h4>🚀 Future Upgrade</h4>
+                    <p>Coming Soon: Mobile app for delivery riders with:</p>
+                    <ul>
+                        <li>Accept/Reject orders</li>
+                        <li>GPS navigation</li>
+                        <li>Real-time tracking</li>
+                        <li>Digital proof of delivery</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showDeliveryOrders() {
+            console.log('Showing delivery orders...');
+        }
+        
+        function showProfile() {
+            console.log('Showing delivery profile...');
+        }
+    </script>
+</body>
+</html>
